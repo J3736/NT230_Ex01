@@ -1,3 +1,7 @@
+Copy this file to your folder.
+
+Open cmd.
+
 Run with Command Line:
 
 - python VK.py -fileInfection "filename".exe
