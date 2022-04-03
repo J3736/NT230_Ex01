@@ -6,7 +6,7 @@ import argparse
 
 # CLI Argument Inputs
 parser = argparse.ArgumentParser(description='Infection by Viet Khoa')
-parser.add_argument('--file','-f', dest='file')
+parser.add_argument('--file','-fileInfection', dest='file')
 
 args = parser.parse_args()
 
